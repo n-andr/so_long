@@ -6,7 +6,7 @@
 /*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/23 16:49:31 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:58:14 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int has_valid_path(char *map)
     exit(EXIT_FAILURE);
 }
 
-int	fill_map(char *map, int lines, t_game_info *game)
+void	fill_map(char *map, int lines, t_game_info *game)
 {
 	int	file;
 	int	i;
@@ -39,7 +39,7 @@ int	fill_map(char *map, int lines, t_game_info *game)
 	i = 0;
 	game->map = malloc(sizeof(char *) * (lines + 1)); // maybe lines ???
 	if (game->map == NULL)
-		return (NULL);
+		return ;
 	while (i <= lines) // when i == lines NULL should be returned
 	{
 		game->map[i] = get_next_line(file);
@@ -49,9 +49,12 @@ int	fill_map(char *map, int lines, t_game_info *game)
 	while (i <= lines)
 	{
 		printf("line %d : %s", i, game->map[i]);
+		free (game->map[i]);
 		i ++;
 	}
-	return (1);
+	free (game->map);
+	
+	return ;
 	
 }
 
