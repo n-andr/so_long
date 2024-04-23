@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:21:53 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/23 15:48:13 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/04/23 23:09:06 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 typedef struct s_game_info
 {
 	char	**map;
+	int		rows;
 }	t_game_info;
 
 int read_map(char *map, t_game_info *game);
+
+
+//free
+void	free_game(t_game_info *game);
+
+//libft
+int	ft_strlen(char *str);

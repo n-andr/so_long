@@ -3,57 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/23 17:58:14 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/04/23 23:09:02 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int is_rectangular(char *map)
+void is_rectangular(t_game_info *game)
 {
-    write(1, "Error\nMap is not rectangular\n", 29);
-    exit(EXIT_FAILURE);
+	int	i;
+
+	i = 1;
+	while (game->map[i])
+	{
+		if (ft_strlen(game->map[i]) == ft_strlen(game->map[i - 1]))
+		{
+			i++;
+		}
+		else
+		{
+			write(1, "Error\nMap is not rectangular\n", 29);
+			free_game(game);
+    		exit(EXIT_FAILURE);
+		}
+	}
 }
 
-int is_closed(char *map)
+int is_closed(t_game_info *game)
 {
     write(1, "Error\nMap is not closed/surrounded by walls\n", 44);
+	free_game(game);
     exit(EXIT_FAILURE);
 }
 
-int has_valid_path(char *map)
+int has_valid_path(t_game_info *game)
 {
     write(1, "Error\nNo valid path\n", 21);
+	free_game(game);
     exit(EXIT_FAILURE);
 }
-
-void	fill_map(char *map, int lines, t_game_info *game)
+void	check_map(t_game_info *game)
+{
+	is_rectangular(game);
+	is_closed(game);
+	has_valid_path(game);
+}
+void	fill_map(char *map, t_game_info *game)
 {
 	int	file;
 	int	i;
 
 	file = open(map, O_RDWR);
 	i = 0;
-	game->map = malloc(sizeof(char *) * (lines + 1)); // maybe lines ???
+	game->map = malloc(sizeof(char *) * (game->rows + 1)); // maybe just rows ???
 	if (game->map == NULL)
 		return ;
-	while (i <= lines) // when i == lines NULL should be returned
+	while (i <= game->rows) // when i == rows NULL should be returned
 	{
 		game->map[i] = get_next_line(file);
 		i ++;
 	}
-	i = 0;
-	while (i <= lines)
-	{
-		printf("line %d : %s", i, game->map[i]);
-		free (game->map[i]);
-		i ++;
-	}
-	free (game->map);
-	
+	close(file);
+	check_map(game);
 	return ;
 	
 }
@@ -62,7 +76,6 @@ int read_map(char *map, t_game_info *game)
 {
 	int		file;
 	char	*line;
-	int		count_lines;
 
 	file = open(map, O_RDWR);
 	if (file == -1)
@@ -70,7 +83,7 @@ int read_map(char *map, t_game_info *game)
 		write(1, "Error\nMap does not exist\n", 25);
 		exit(EXIT_FAILURE);
 	}
-	count_lines = 0;
+	game->rows = 0;
 	line = get_next_line(file);
 	if (line == NULL)
 	{
@@ -80,15 +93,11 @@ int read_map(char *map, t_game_info *game)
 	while (line)
 	{
 		free(line);
-		count_lines ++;
+		game->rows ++;
 		line = get_next_line (file);
 	}
 	free(line); //check for null? double free?
-	fill_map(map, count_lines, game);
 	close(file);
-
-	// is_rectangular(map);
-	// is_closed(map);
-	// has_valid_path(map);
+	fill_map(map, game);
 	return (1); // if map is fine
 }
