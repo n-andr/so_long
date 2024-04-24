@@ -6,7 +6,7 @@
 /*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/24 16:53:03 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/04/24 20:19:31 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,28 @@ void is_rectangular(t_game_info *game)
 			free_game(game);
     		exit(EXIT_FAILURE);
 		}
+		game->columns = ft_strlen(game->map[0]);
 	}
 }
 
-int is_closed(t_game_info *game)
-{
-    write(1, "Error\nMap is not closed/surrounded by walls\n", 44);
-	free_game(game);
-    exit(EXIT_FAILURE);
-}
+// int is_closed(t_game_info *game)
+// {
+//     write(1, "Error\nMap is not closed/surrounded by walls\n", 44);
+// 	free_game(game);
+//     exit(EXIT_FAILURE);
+// }
 
-int has_valid_path(t_game_info *game)
-{
-    write(1, "Error\nNo valid path\n", 21);
-	free_game(game);
-    exit(EXIT_FAILURE);
-}
+// int has_valid_path(t_game_info *game)
+// {
+//     write(1, "Error\nNo valid path\n", 21);
+// 	free_game(game);
+//     exit(EXIT_FAILURE);
+// }
 void	check_map(t_game_info *game)
 {
 	is_rectangular(game);
-	is_closed(game);
-	has_valid_path(game);
+	// is_closed(game);
+	// has_valid_path(game);
 }
 void	fill_map(char *map, t_game_info *game)
 {

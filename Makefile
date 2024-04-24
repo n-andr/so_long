@@ -6,7 +6,7 @@
 #    By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/24 16:28:20 by nandreev          #+#    #+#              #
-#    Updated: 2024/04/24 16:52:45 by nandreev         ###   ########.fr        #
+#    Updated: 2024/04/24 20:12:43 by nandreev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@make -C $(MLX_LIB)
+	@make -C $(MLX_LIB) 
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
