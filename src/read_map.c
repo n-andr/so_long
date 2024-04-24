@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/24 16:53:03 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:24:23 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,37 @@ void is_rectangular(t_game_info *game)
 			free_game(game);
     		exit(EXIT_FAILURE);
 		}
+		game->columns = ft_strlen(game->map[0]);
 	}
 }
 
 int is_closed(t_game_info *game)
 {
-    write(1, "Error\nMap is not closed/surrounded by walls\n", 44);
-	free_game(game);
-    exit(EXIT_FAILURE);
+	int	i;
+	int	k;
+
+	i = 0;
+	k = 0;
+	while (game->map[i])
+	{
+		if (i == 0 || i == (game->rows - 1))
+		{
+			while (game->map[i][k] == '\0')
+			{
+				if (game->map[i][k] == '1')
+					k ++;
+				else
+					return(1);
+				k = 0;
+			}
+			i ++;
+		}
+		else if ((game->map[i][0] == 1) && (game->map[i][game->columns - 1] == 1)
+				&& i != 0 && i != (game->rows - 1))
+			i ++;
+		else
+			return(1);
+	}
 }
 
 int has_valid_path(t_game_info *game)
@@ -48,7 +71,12 @@ int has_valid_path(t_game_info *game)
 void	check_map(t_game_info *game)
 {
 	is_rectangular(game);
-	is_closed(game);
+	if (is_closed(game) == 1)
+	{
+		write(1, "Error\nMap is not closed\n", 24);
+		free_game(game);
+		exit(EXIT_FAILURE);
+	}
 	has_valid_path(game);
 }
 void	fill_map(char *map, t_game_info *game)
