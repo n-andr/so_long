@@ -6,11 +6,15 @@
 /*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:49:22 by nandreev          #+#    #+#             */
-/*   Updated: 2024/02/15 17:25:12 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:14:33 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+// changed from original gnl before it also copied \n, now it doesn't
+// before : ft_strlcpy (read_line, big_buf, (i + 2));
+// now : ft_strlcpy (read_line, big_buf, (i + 1));
 
 char	*split_buf(char *big_buf)
 {
@@ -25,7 +29,7 @@ char	*split_buf(char *big_buf)
 		read_line = malloc (sizeof(char) * (i + 2));
 		if (read_line == NULL)
 			return (NULL);
-		ft_strlcpy (read_line, big_buf, (i + 2));
+		ft_strlcpy (read_line, big_buf, (i + 1));
 		ft_strlcpy(big_buf, (big_buf + i + 1), (ft_strlen(big_buf) - i));
 	}
 	else
