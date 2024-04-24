@@ -6,7 +6,7 @@
 /*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/24 16:45:22 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:29:28 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	main(int argc, char **argv)
 		write(1, "Programm accepts only 1 argument\n", 33);
 		exit(EXIT_FAILURE);
 	}
+	game->mlx = mlx_init();
 	return (0);
 }
