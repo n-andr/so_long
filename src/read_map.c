@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/24 23:24:23 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/04/25 00:05:12 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int is_closed(t_game_info *game)
 				if (game->map[i][k] == '1')
 					k ++;
 				else
-					return(1);
+					return(0);
 				k = 0;
 			}
 			i ++;
@@ -58,26 +58,26 @@ int is_closed(t_game_info *game)
 				&& i != 0 && i != (game->rows - 1))
 			i ++;
 		else
-			return(1);
+			return(0);
 	}
 }
 
-int has_valid_path(t_game_info *game)
-{
-    write(1, "Error\nNo valid path\n", 21);
-	free_game(game);
-    exit(EXIT_FAILURE);
-}
 void	check_map(t_game_info *game)
 {
 	is_rectangular(game);
-	if (is_closed(game) == 1)
+	if (is_closed(game) != 1)
 	{
 		write(1, "Error\nMap is not closed\n", 24);
 		free_game(game);
 		exit(EXIT_FAILURE);
 	}
-	has_valid_path(game);
+	// The map must contain 1 exit, at least 1 collectible, and 1 starting position to be valid.
+	if (has_valid_path(game) != 1)
+	{
+		write(1, "Error\nNo valid path\n", 21);
+		free_game(game);
+		exit(EXIT_FAILURE);
+	}
 }
 void	fill_map(char *map, t_game_info *game)
 {
