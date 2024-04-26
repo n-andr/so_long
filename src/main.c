@@ -6,7 +6,7 @@
 /*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/25 13:53:08 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:18:22 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 int	main(int argc, char **argv)
 {
 	t_game_info game;
-	printf("main\n"); // remove
+
 	if (argc == 2) // need to check if map ends with .ber
 	{
-		printf("read map\n"); // remove
-		read_map(argv[1], &game);
-		
+		read_map(argv[1], &game);	
 	}
 	else
 	{
@@ -28,7 +26,9 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	printf("map is ok\n");
-	// game.mlx = mlx_init();
-	// game.window = mlx_new_window(game.mlx, game.columns, game.rows, "so long");
+	game.mlx = mlx_init();
+	game.window = mlx_new_window(game.mlx, game.columns * 32, \
+	game.rows * 32, "so long");
+	mlx_loop(game.mlx);
 	return (0);
 }

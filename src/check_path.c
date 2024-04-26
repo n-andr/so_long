@@ -6,7 +6,7 @@
 /*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:07 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/26 17:44:35 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:05:14 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,17 @@ int	find_p(t_game_info *game, char **map)
 			row++;
 		}
 	}
-	flood_fill(map, row, col, game);
-	int i = 0;
-	while (i < game->rows)
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-	printf("col: %i\n", game->collectibles);
-	printf("col-check: %i\n", game->c_check);
-	return 0;
-	// return (flood_fill(map, row, col));
+	// flood_fill(map, row, col, game);
+	// int i = 0;
+	// while (i < game->rows)
+	// {
+	// 	printf("%s\n", map[i]);
+	// 	i++;
+	// }
+	// printf("col: %i\n", game->collectibles);
+	// printf("col-check: %i\n", game->c_check);
+	// return 0;
+	return (flood_fill(map, row, col, game));
 }
 
 int has_valid_path(t_game_info *game, char *map_adress)
