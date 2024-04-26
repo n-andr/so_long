@@ -6,7 +6,7 @@
 /*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:07 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/25 18:15:43 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:44:35 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,23 @@
 
 int	flood_fill(char **map, int row, int col, t_game_info *game)
 {
-	if (map[row][col] == 'E')
+	if (game->exit_check == 1 && game->c_check == game->collectibles)
+			return(1);
+	else if (map[row][col] == 'E')
 	{
 		game->exit_check = 1;
-		if (game->exit_check == 1 && game->colect_check == game->colectables)
-			return(1);
 		return (0);
-	}
-	else if (game->exit_check == 1 && game->colect_check == game->colectables)
-	{
-		return(1);
 	}
 	else if (map[row][col] == '0' || map[row][col] == 'C' || map[row][col] == 'P')
 	{
 		if (map[row][col] == 'C')
-			game->colect_check ++;
+			game->c_check ++;
 		map[row][col] = '+';
-		if (flood_fill(map, row + 1, col, game) == 1
+		if(flood_fill(map, row + 1, col, game) == 1
 			|| flood_fill(map, row - 1, col, game) == 1
 			|| flood_fill(map, row, col + 1, game) == 1
 			|| flood_fill(map, row, col - 1, game) == 1)
-		{
 			return (1);
-		}
 		else
 			return(0);
 	}
@@ -96,6 +90,8 @@ int	find_p(t_game_info *game, char **map)
 		printf("%s\n", map[i]);
 		i++;
 	}
+	printf("col: %i\n", game->collectibles);
+	printf("col-check: %i\n", game->c_check);
 	return 0;
 	// return (flood_fill(map, row, col));
 }
@@ -130,7 +126,7 @@ int has_valid_path(t_game_info *game, char *map_adress)
 	if (find_p(game, map) == 1)
 	{
 		free_check_map(map);
-		game->colect_check = 0;
+		game->c_check = 0;
     	return (1); // if ok
 	}
 	free_check_map(map);

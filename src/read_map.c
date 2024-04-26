@@ -6,7 +6,7 @@
 /*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/25 18:06:32 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:50:18 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,24 +124,21 @@ int	c_check(t_game_info *game)
 	int e_count;
 
 	row = 0;
-	col = 0;
 	e_count = 0;
 	while (row < game->rows)
 	{
+		col = 0;
 		while (col < game->columns)
-			{
-				if (game->map[row][col] == 'C')
-					e_count ++;
-				col++;
-			}
-		if (col == game->columns) 
 		{
-			col = 0;
-			row++;
+			if (game->map[row][col] == 'C')
+				e_count ++;
+			col++;
 		}
+		row++;
 	}
-	game->colectables = e_count;
-	game->colect_check = 0;
+	game->collectibles = e_count;
+	game->c_check = 0;
+	printf("collectables: %i", game->collectibles);
 	return(e_count);
 }
 
@@ -159,9 +156,9 @@ void	elements_check(t_game_info *game)
 		free_game(game);
 		exit(EXIT_FAILURE);
 	}
-	if (e_check(game) < 1)
+	if (c_check(game) < 1)
 	{
-		write(1, "Error\nThe map must contain 1 E\n", 31);
+		write(1, "Error\nThe map must contain 1 C\n", 31);
 		free_game(game);
 		exit(EXIT_FAILURE);
 	}
