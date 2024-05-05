@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:21:53 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/26 17:44:38 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/05/05 22:54:38 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 # include "mlx.h"
 # include <stdio.h>
 
-
+// if complains about include "mlx.h"
+//sudo cp libmlx.a /usr/local/lib/
+// sudo cp mlx.h /usr/local/include/
 typedef struct s_game_info
 {
 	char	**map;
@@ -40,6 +42,7 @@ int has_valid_path(t_game_info *game, char *map_adress);
 //free
 void	free_game(t_game_info *game);
 void	free_check_map(char **map);
+void	close_game(t_game_info *game);
 
 //libft
 //int	ft_strlen(char *str);

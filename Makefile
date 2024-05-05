@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+         #
+#    By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/24 16:28:20 by nandreev          #+#    #+#              #
-#    Updated: 2024/04/25 14:19:12 by nandreev         ###   ########.fr        #
+#    Updated: 2024/05/03 23:09:21 by Natalia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ $(NAME): $(OBJS)
 	git clone https://github.com/42Paris/minilibx-linux.git mlx; \
 	fi
 	@make -C $(MLX_LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(GETNEXTLINE) $(MLX_FLAGS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)

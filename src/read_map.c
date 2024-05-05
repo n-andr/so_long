@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/26 18:02:21 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/05/04 22:58:39 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void is_rectangular(t_game_info *game)
 		}
 		game->columns = ft_strlen(game->map[0]);
 	}
-	printf("map is rectangular\n"); // remove
+	printf("map is rectangular\n") ; // remove
 }
 
 int is_closed(t_game_info *game)
@@ -162,6 +162,7 @@ void	elements_check(t_game_info *game)
 		free_game(game);
 		exit(EXIT_FAILURE);
 	}
+	// need to check for other chars that don't belong
 	return ;
 
 }
@@ -201,7 +202,7 @@ void	fill_map(char *map, t_game_info *game)
 		i ++;
 	}
 	close(file);
-	check_map(game, map);
+	check_map(game, map); // need to check if size of the map fits in the screen (or can move the map)
 	return ;
 	
 }
