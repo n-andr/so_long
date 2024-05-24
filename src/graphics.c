@@ -75,4 +75,5 @@ void	load_map_graphics(t_game_info *game)
 		load_row(game, i);
 		i++;
 	}
+	//do i need to display a counter for collectibles?
 }

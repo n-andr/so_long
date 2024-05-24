@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/24 16:27:56 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/24 23:02:34 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	key_pressed(int key, t_game_info *game) // more like key unpressed???
 	if (key == 119 || key == 115 \
 	|| key == 100 || key == 97)
 	{
-		/* code */
+		move_p(game, key);
 	}
 	else if (key == 65307)
 	{

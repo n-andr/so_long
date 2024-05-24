@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:21:53 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/24 16:29:05 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/24 23:20:01 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_game_info
 	int	img_width;
 	int	img_height;
 	int	collectibles;
-	int	c_check;
+	int	c_count;
 	int	exit_check;
 	void *mlx;
 	void *window;
@@ -58,6 +58,9 @@ int	key_pressed(int key, t_game_info *game);
 // graphics
 void	open_img(t_game_info *game);
 void	load_graphics(t_game_info *game);
+
+//moves
+void	move_p(t_game_info *game, int keycode);
 
 
 //free

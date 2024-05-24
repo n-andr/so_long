@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/24 22:14:24 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/24 23:21:09 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,25 +137,23 @@ int	c_check(t_game_info *game)
 {
 	int	row;
 	int	col;
-	int e_count;
 
 	row = 0;
-	e_count = 0;
+	game->c_count = 0;
 	while (row < game->rows)
 	{
 		col = 0;
 		while (col < game->columns)
 		{
 			if (game->map[row][col] == 'C')
-				e_count ++;
+				game->c_count ++;
 			col++;
 		}
 		row++;
 	}
-	game->collectibles = e_count;
-	game->c_check = 0;
-	// printf("collectables: %i", game->collectibles);
-	return(e_count);
+	game->collectibles = game->c_count;
+	game->c_count = 0;
+	return(game->collectibles);
 }
 
 void	elements_check(t_game_info *game)

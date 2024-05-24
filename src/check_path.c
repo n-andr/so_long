@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nandreev <nandreev@student.42berlin.de     +#+  +:+       +#+        */
+/*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:07 by nandreev          #+#    #+#             */
-/*   Updated: 2024/04/26 18:05:14 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/05/24 23:26:27 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	flood_fill(char **map, int row, int col, t_game_info *game)
 {
-	if (game->exit_check == 1 && game->c_check == game->collectibles)
+	if (game->exit_check == 1 && game->c_count == game->collectibles)
 			return(1);
 	else if (map[row][col] == 'E')
 	{
@@ -24,7 +24,7 @@ int	flood_fill(char **map, int row, int col, t_game_info *game)
 	else if (map[row][col] == '0' || map[row][col] == 'C' || map[row][col] == 'P')
 	{
 		if (map[row][col] == 'C')
-			game->c_check ++;
+			game->c_count ++;
 		map[row][col] = '+';
 		if(flood_fill(map, row + 1, col, game) == 1
 			|| flood_fill(map, row - 1, col, game) == 1
@@ -116,17 +116,17 @@ int has_valid_path(t_game_info *game, char *map_adress)
 	}
 	close(file);
 	//remove
-	i = 0;
-	while (i < game->rows)
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
+	// i = 0;
+	// while (i < game->rows)
+	// {
+	// 	printf("%s\n", map[i]);
+	// 	i++;
+	// }
 	// end remove
 	if (find_p(game, map) == 1)
 	{
 		free_check_map(map);
-		game->c_check = 0;
+		game->c_count = 0;
     	return (1); // if ok
 	}
 	free_check_map(map);
