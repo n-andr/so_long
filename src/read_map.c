@@ -6,11 +6,27 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/04 22:58:39 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/24 22:14:24 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+/*
+Is not too big to play
+Has to be rectangular
+Has to be surrounded by walls
+No empty lines anywhere
+Has to have a valid path to every coin and exit
+No other characters besides 1, 0, C, E, P
+Only one player and exit
+You have to handle the case if the coin is blocked by the exit
+Empty map case
+Invalid extension (only .ber allowed)
+Map does not exist
+No arguments or to many arguments
+Check every error case with valgrind
+*/
 
 void is_rectangular(t_game_info *game)
 {
@@ -31,7 +47,7 @@ void is_rectangular(t_game_info *game)
 		}
 		game->columns = ft_strlen(game->map[0]);
 	}
-	printf("map is rectangular\n") ; // remove
+	// printf("map is rectangular\n") ; // remove
 }
 
 int is_closed(t_game_info *game)

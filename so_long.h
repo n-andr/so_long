@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:21:53 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/23 23:08:23 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/24 16:29:05 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_textures
 	void	*collectible;
 	void	*wall;
 	void	*exit;
+	void	*background;
 }	t_textures;
 
 typedef struct s_game_info
@@ -53,6 +54,11 @@ typedef struct s_game_info
 int read_map(char *map, t_game_info *game);
 int has_valid_path(t_game_info *game, char *map_adress);
 int	key_pressed(int key, t_game_info *game);
+
+// graphics
+void	open_img(t_game_info *game);
+void	load_graphics(t_game_info *game);
+
 
 //free
 void	free_game(t_game_info *game);

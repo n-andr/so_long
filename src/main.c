@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/05 23:32:39 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/24 16:27:56 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ int	main(int argc, char **argv)
 		write(1, "Programm accepts only 1 argument\n", 33);
 		exit(EXIT_FAILURE);
 	}
-	printf("map is ok\n"); // remove
+	// printf("map is ok\n"); // remove
 	//need to handle cntr c to have no leaks???
 	game.mlx = mlx_init();
 	game.window = mlx_new_window(game.mlx, game.columns * 32, \
 	game.rows * 32, "so long");
+	open_img(&game);
+	load_graphics(&game);
 	mlx_hook((game.window), 17, 0, close_game, &game);
 	mlx_key_hook(game.window, key_pressed, &game);
 	mlx_loop(game.mlx);

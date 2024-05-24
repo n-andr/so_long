@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:18:09 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/23 22:40:12 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/24 16:17:17 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,18 @@ void	free_check_map(char **map)
 	free (map);
 }
 
+void	free_img(t_game_info *game)
+{
+	mlx_destroy_image(game->mlx, game->textures.background);
+	mlx_destroy_image(game->mlx, game->textures.collectible);
+	mlx_destroy_image(game->mlx, game->textures.exit);
+	mlx_destroy_image(game->mlx, game->textures.player);
+	mlx_destroy_image(game->mlx, game->textures.wall);
+}
+
 int	close_game(t_game_info *game) // need to be int cus mlx_hook and nlx_key_hook require int
 {
+	free_img(game); // here???
 	mlx_destroy_window(game->window, game->window);
 	mlx_destroy_display(game->mlx);
 	free_game(game); 
