@@ -92,6 +92,7 @@ void	move_right(t_game_info *game, int row, int col)
 	{
 		game->map[row][col] = '0';
 		game->map[row][col + 1] == 'P';
+		count_moves(game);
 	}
 	else if (game->map[row][col + 1] == '1')
 		return;
@@ -100,16 +101,16 @@ void	move_right(t_game_info *game, int row, int col)
 		game->map[row][col] = '0';
 		game->map[row][col + 1] == 'P';
 		game->c_count ++;
+		count_moves(game);
 	}
 	else if (game->map[row][col + 1] == 'E' && game->c_count == game->collectibles)
 	{
-		game->moves_count++;
+		count_moves(game);
 		//success!
 		close_game(game);
 	}
 	else if (game->map[row][col + 1] == 'E' && game->c_count != game->collectibles)
 		return;
-	game->moves_count++;
 }
 
 void	move_p(t_game_info *game, int key)

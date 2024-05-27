@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:21:53 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/27 14:42:56 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/27 15:29:48 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	load_graphics(t_game_info *game);
 
 //moves
 void	move_p(t_game_info *game, int keycode);
+void	count_moves(t_game_info *game);
 
 
 //free

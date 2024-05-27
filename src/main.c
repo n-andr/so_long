@@ -6,12 +6,22 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/24 23:02:34 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/27 15:33:26 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+void	count_moves(t_game_info *game)
+{
+	char	*moves;
+
+	game->moves_count ++;
+	moves = ft_itoa(game->moves_count);
+	write(1, &moves, ft_strlen(moves));
+	write(1, "\n", 1);
+	free(moves);
+}
 // need to be int cus mlx_hook and nlx_key_hook require int
 int	key_pressed(int key, t_game_info *game) // more like key unpressed???
 {
