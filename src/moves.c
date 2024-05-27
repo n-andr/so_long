@@ -8,28 +8,133 @@ key == 97 - A
 
 based on ASCII lowercase
 */
-void	move_up(t_game_info *game)
+void	move_up(t_game_info *game, int row, int col)
 {
+	if (game->map[row + 1][col] == '0')
+	{
+		game->map[row][col] = '0';
+		game->map[row + 1][col] == 'P';
+	}
+	else if (game->map[row + 1][col] == '1')
+		return;
+	else if (game->map[row + 1][col] == 'C')
+	{
+		game->map[row][col] = '0';
+		game->map[row + 1][col] == 'P';
+		game->c_count ++;
+	}
+	else if (game->map[row + 1][col] == 'E' && game->c_count == game->collectibles)
+	{
+		game->moves_count++;
+		//success!
+		close_game(game);
+	}
+	else if (game->map[row + 1][col] == 'E' && game->c_count != game->collectibles)
+		return;
+	game->moves_count++;
+}
 
+void	move_down(t_game_info *game, int row, int col)
+{
+	if (game->map[row - 1][col] == '0')
+	{
+		game->map[row][col] = '0';
+		game->map[row - 1][col] == 'P';
+	}
+	else if (game->map[row - 1][col] == '1')
+		return;
+	else if (game->map[row - 1][col] == 'C')
+	{
+		game->map[row][col] = '0';
+		game->map[row - 1][col] == 'P';
+		game->c_count ++;
+	}
+	else if (game->map[row - 1][col] == 'E' && game->c_count == game->collectibles)
+	{
+		game->moves_count++;
+		//success!
+		close_game(game);
+	}
+	else if (game->map[row - 1][col] == 'E' && game->c_count != game->collectibles)
+		return;
+	game->moves_count++;
+}
+
+void	move_left(t_game_info *game, int row, int col)
+{
+	if (game->map[row][col - 1] == '0')
+	{
+		game->map[row][col] = '0';
+		game->map[row][col - 1] == 'P';
+	}
+	else if (game->map[row][col - 1] == '1')
+		return;
+	else if (game->map[row][col - 1] == 'C')
+	{
+		game->map[row][col] = '0';
+		game->map[row][col - 1] == 'P';
+		game->c_count ++;
+	}
+	else if (game->map[row][col - 1] == 'E' && game->c_count == game->collectibles)
+	{
+		game->moves_count++;
+		//success!
+		close_game(game);
+	}
+	else if (game->map[row][col - 1] == 'E' && game->c_count != game->collectibles)
+		return;
+	game->moves_count++;
+}
+
+void	move_right(t_game_info *game, int row, int col)
+{
+	if (game->map[row][col + 1] == '0')
+	{
+		game->map[row][col] = '0';
+		game->map[row][col + 1] == 'P';
+	}
+	else if (game->map[row][col + 1] == '1')
+		return;
+	else if (game->map[row][col + 1] == 'C')
+	{
+		game->map[row][col] = '0';
+		game->map[row][col + 1] == 'P';
+		game->c_count ++;
+	}
+	else if (game->map[row][col + 1] == 'E' && game->c_count == game->collectibles)
+	{
+		game->moves_count++;
+		//success!
+		close_game(game);
+	}
+	else if (game->map[row][col + 1] == 'E' && game->c_count != game->collectibles)
+		return;
+	game->moves_count++;
 }
 
 void	move_p(t_game_info *game, int key)
 {
+	int	row;
+	int	col;
+
+	row = 0;
+	col = 0;
+	find_p(game, game->map);
 	if (key == 119)
 	{
-		/* code */
+		move_up(game, game->p_position_row, game->p_position_col);
 	}
 	else if (key == 115)
 	{
-		/* code */
+		move_down(game, game->p_position_row, game->p_position_col);
 	}
 	else if (key == 100)
 	{
-		/* code */
+		move_right(game, game->p_position_row, game->p_position_col);
 	}
 	else if (key == 97)
 	{
-		/* code */
+		move_left(game, game->p_position_row, game->p_position_col);
 	}
 }
 
