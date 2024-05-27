@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:07 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/24 23:26:27 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/27 13:44:48 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	flood_fill(char **map, int row, int col, t_game_info *game)
 // 		return(0);
 // }
 
-int	find_p(t_game_info *game, char **map)
+void	find_p(t_game_info *game, char **map)
 {
 	int	row;
 	int	col;
@@ -75,7 +75,7 @@ int	find_p(t_game_info *game, char **map)
 	col = 0;
 	while (map[row][col] != 'P' && row < game->rows)
 	{
-		while (col < game->columns && map[row][col] != 'P')
+		while (col < game->columns && map[row][col] != 'P') //double check if works if p is far right
 			col++;
 		if (col == game->columns) 
 		{
@@ -83,6 +83,8 @@ int	find_p(t_game_info *game, char **map)
 			row++;
 		}
 	}
+	game->p_position_row = row;
+	game->p_position_col = col;
 	// flood_fill(map, row, col, game);
 	// int i = 0;
 	// while (i < game->rows)
@@ -93,7 +95,7 @@ int	find_p(t_game_info *game, char **map)
 	// printf("col: %i\n", game->collectibles);
 	// printf("col-check: %i\n", game->c_check);
 	// return 0;
-	return (flood_fill(map, row, col, game));
+	//return (flood_fill(map, row, col, game)); //maybe move out of return
 }
 
 int has_valid_path(t_game_info *game, char *map_adress)
@@ -123,7 +125,8 @@ int has_valid_path(t_game_info *game, char *map_adress)
 	// 	i++;
 	// }
 	// end remove
-	if (find_p(game, map) == 1)
+	find_p(game, map);
+	if (flood_fill(map, game->p_position_row, game->p_position_col, game) == 1)
 	{
 		free_check_map(map);
 		game->c_count = 0;

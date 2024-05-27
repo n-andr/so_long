@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:21:53 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/24 23:20:01 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/27 13:45:52 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_game_info
 	char	**map;
 	int	rows;
 	int	columns;
+	int	p_position_row;
+	int p_position_col;
 	int	img_width;
 	int	img_height;
 	int	collectibles;
