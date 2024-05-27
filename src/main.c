@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/27 15:33:26 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/27 16:28:31 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ int	key_pressed(int key, t_game_info *game) // more like key unpressed???
 	}
 	return (0);
 }
+void	is_ber(char *map_adress)
+{
+	if (map_adress[ft_strlen(map_adress) - 1] == 'r'
+		&& map_adress[ft_strlen(map_adress) - 2] == 'e'
+		&& map_adress[ft_strlen(map_adress) - 3] == 'b'
+		&& map_adress[ft_strlen(map_adress) - 4] == '.')
+		return ;
+	else
+	{
+		write(1, "Error\nProgramm accepts only .ber files\n", 39);
+		exit(EXIT_FAILURE);
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -43,6 +56,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 2) // need to check if map ends with .ber
 	{
+		is_ber(argv[1]);
 		read_map(argv[1], &game);	
 	}
 	else

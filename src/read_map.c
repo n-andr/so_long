@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/27 14:43:58 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/27 16:01:32 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,33 @@ void	elements_check(t_game_info *game)
 	return ;
 
 }
+
+void	characters_check(t_game_info *game)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	while (row < game->rows)
+	{
+		col = 0;
+		while (col < game->columns)
+		{
+			if (game->map[row][col] != 'C' 
+				&& game->map[row][col] != '1'
+				&& game->map[row][col] != '0'
+				&& game->map[row][col] != 'E'
+				&& game->map[row][col] != 'P')
+			{
+				write(1, "Error\nForbiden character\n", 25);
+				free_map(game);
+				exit(EXIT_FAILURE);	
+			}	
+			col++;
+		}
+		row++;
+	}
+}
 void	check_map(t_game_info *game, char *map_adress)
 {
 		printf("check map\n"); // remove
@@ -192,6 +219,7 @@ void	check_map(t_game_info *game, char *map_adress)
 		exit(EXIT_FAILURE);
 	}
 	elements_check(game);
+	characters_check(game);
 	// The map must contain 1 exit, at least 1 collectible, and 1 starting position to be valid.
 	if (has_valid_path(game, map_adress) != 1)
 	{
@@ -200,12 +228,12 @@ void	check_map(t_game_info *game, char *map_adress)
 		exit(EXIT_FAILURE);
 	}
 }
-void	fill_map(char *map, t_game_info *game)
+void	fill_map(char *map_adress, t_game_info *game)
 {
 	int	file;
 	int	i;
 
-	file = open(map, O_RDWR);
+	file = open(map_adress, O_RDWR);
 	i = 0;
 	game->map = malloc(sizeof(char *) * (game->rows + 1)); // maybe just rows ???
 	if (game->map == NULL)
@@ -216,17 +244,17 @@ void	fill_map(char *map, t_game_info *game)
 		i ++;
 	}
 	close(file);
-	check_map(game, map); // need to check if size of the map fits in the screen (or can move the map)
+	check_map(game, map_adress); // need to check if size of the map fits in the screen (or can move the map)
 	game->moves_count = 0;
 	return ;
 }
 
-int read_map(char *map, t_game_info *game)
+int read_map(char *map_adress, t_game_info *game)
 {
 	int		file;
 	char	*line;
 
-	file = open(map, O_RDWR);
+	file = open(map_adress, O_RDWR);
 	if (file == -1)
 	{
 		write(1, "Error\nMap does not exist\n", 25);
@@ -247,6 +275,6 @@ int read_map(char *map, t_game_info *game)
 	}
 	free(line); //check for null? double free?
 	close(file);
-	fill_map(map, game);
+	fill_map(map_adress, game);
 	return (1); // if map is fine
 }
