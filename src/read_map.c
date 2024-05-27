@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/24 23:21:09 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/27 14:43:58 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void is_rectangular(t_game_info *game)
 		else
 		{
 			write(1, "Error\nMap is not rectangular\n", 29);
-			free_game(game);
+			(game);
     		exit(EXIT_FAILURE);
 		}
 		game->columns = ft_strlen(game->map[0]);
@@ -161,22 +161,22 @@ void	elements_check(t_game_info *game)
 	if (p_check(game) != 1)
 	{
 		write(1, "Error\nThe map must contain 1 P\n", 31);
-		free_game(game);
+		(game);
 		exit(EXIT_FAILURE);
 	}
 	if (e_check(game) != 1)
 	{
 		write(1, "Error\nThe map must contain 1 E\n", 31);
-		free_game(game);
+		(game);
 		exit(EXIT_FAILURE);
 	}
 	if (c_check(game) < 1)
 	{
 		write(1, "Error\nThe map must contain min 1 C\n", 36);
-		free_game(game);
+		free_map(game);
 		exit(EXIT_FAILURE);
 	}
-	// need to check for other chars that don't belong
+	// need to check that only allowed characters are here
 	return ;
 
 }
@@ -188,7 +188,7 @@ void	check_map(t_game_info *game, char *map_adress)
 	if (is_closed(game) != 1)
 	{
 		write(1, "Error\nMap is not closed\n", 24);
-		free_game(game);
+		free_map(game);
 		exit(EXIT_FAILURE);
 	}
 	elements_check(game);
@@ -196,7 +196,7 @@ void	check_map(t_game_info *game, char *map_adress)
 	if (has_valid_path(game, map_adress) != 1)
 	{
 		write(1, "Error\nNo valid path\n", 21);
-		free_game(game);
+		free_map(game);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -217,8 +217,8 @@ void	fill_map(char *map, t_game_info *game)
 	}
 	close(file);
 	check_map(game, map); // need to check if size of the map fits in the screen (or can move the map)
+	game->moves_count = 0;
 	return ;
-	
 }
 
 int read_map(char *map, t_game_info *game)
