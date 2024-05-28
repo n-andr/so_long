@@ -13,14 +13,14 @@ void	move_up(t_game_info *game, int row, int col)
 	if (game->map[row + 1][col] == '0')
 	{
 		game->map[row][col] = '0';
-		game->map[row + 1][col] == 'P';
+		game->map[row + 1][col] = 'P';
 	}
 	else if (game->map[row + 1][col] == '1')
 		return;
 	else if (game->map[row + 1][col] == 'C')
 	{
 		game->map[row][col] = '0';
-		game->map[row + 1][col] == 'P';
+		game->map[row + 1][col] = 'P';
 		game->c_count ++;
 	}
 	else if (game->map[row + 1][col] == 'E' && game->c_count == game->collectibles)
@@ -39,14 +39,14 @@ void	move_down(t_game_info *game, int row, int col)
 	if (game->map[row - 1][col] == '0')
 	{
 		game->map[row][col] = '0';
-		game->map[row - 1][col] == 'P';
+		game->map[row - 1][col] = 'P';
 	}
 	else if (game->map[row - 1][col] == '1')
 		return;
 	else if (game->map[row - 1][col] == 'C')
 	{
 		game->map[row][col] = '0';
-		game->map[row - 1][col] == 'P';
+		game->map[row - 1][col] = 'P';
 		game->c_count ++;
 	}
 	else if (game->map[row - 1][col] == 'E' && game->c_count == game->collectibles)
@@ -65,14 +65,14 @@ void	move_left(t_game_info *game, int row, int col)
 	if (game->map[row][col - 1] == '0')
 	{
 		game->map[row][col] = '0';
-		game->map[row][col - 1] == 'P';
+		game->map[row][col - 1] = 'P';
 	}
 	else if (game->map[row][col - 1] == '1')
 		return;
 	else if (game->map[row][col - 1] == 'C')
 	{
 		game->map[row][col] = '0';
-		game->map[row][col - 1] == 'P';
+		game->map[row][col - 1] = 'P';
 		game->c_count ++;
 	}
 	else if (game->map[row][col - 1] == 'E' && game->c_count == game->collectibles)
@@ -91,7 +91,7 @@ void	move_right(t_game_info *game, int row, int col)
 	if (game->map[row][col + 1] == '0')
 	{
 		game->map[row][col] = '0';
-		game->map[row][col + 1] == 'P';
+		game->map[row][col + 1] = 'P';
 		count_moves(game);
 	}
 	else if (game->map[row][col + 1] == '1')
@@ -99,7 +99,7 @@ void	move_right(t_game_info *game, int row, int col)
 	else if (game->map[row][col + 1] == 'C')
 	{
 		game->map[row][col] = '0';
-		game->map[row][col + 1] == 'P';
+		game->map[row][col + 1] = 'P';
 		game->c_count ++;
 		count_moves(game);
 	}
@@ -115,11 +115,6 @@ void	move_right(t_game_info *game, int row, int col)
 
 void	move_p(t_game_info *game, int key)
 {
-	int	row;
-	int	col;
-
-	row = 0;
-	col = 0;
 	find_p(game, game->map);
 	if (key == 119)
 	{

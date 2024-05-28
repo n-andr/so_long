@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/28 12:03:52 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/28 14:47:14 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,7 @@ int read_map(char *map_adress, t_game_info *game)
 	int		file;
 	char	*line;
 
-	file = open(map_adress, O_RDWR);
+	file = open(map_adress, O_RDONLY);
 	if (file == -1)
 	{
 		write(1, "Error\nMap does not exist\n", 25);

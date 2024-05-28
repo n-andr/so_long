@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/27 16:28:31 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/28 14:34:31 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		write(1, "Programm accepts only 1 argument\n", 33);
+		write(1, "Error\nProgramm accepts only 1 argument\n", 39);
 		exit(EXIT_FAILURE);
 	}
 	// printf("map is ok\n"); // remove
@@ -70,7 +70,7 @@ int	main(int argc, char **argv)
 	game.window = mlx_new_window(game.mlx, game.columns * 32, \
 	game.rows * 32, "so long");
 	open_img(&game);
-	load_graphics(&game);
+	load_map_graphics(&game);
 	mlx_hook((game.window), 17, 0, close_game, &game);
 	mlx_key_hook(game.window, key_pressed, &game);
 	mlx_loop(game.mlx);

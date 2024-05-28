@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:21:53 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/28 12:01:49 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/28 14:26:05 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	key_pressed(int key, t_game_info *game);
 
 // graphics
 void	open_img(t_game_info *game);
-void	load_graphics(t_game_info *game);
+void	load_map_graphics(t_game_info *game);
 
 //moves
 void	move_p(t_game_info *game, int keycode);

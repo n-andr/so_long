@@ -11,19 +11,19 @@ void	open_img(t_game_info *game)
 	game->img_width = IMG_WIDTH;
 	//game->current_frame = 0;
 	game->textures.player = mlx_xpm_file_to_image(game->mlx, \
-	"assets/dckFall-32x32_.xpm",game->img_width, game->img_height);
+	"assets/dckFall-32x32_.xpm",&game->img_width, &game->img_height);
 	game->textures.collectible = mlx_xpm_file_to_image(game->mlx, \
-	"assets/potion1.xpm",game->img_width, game->img_height);
+	"assets/potion1.xpm",&game->img_width, &game->img_height);
 	game->textures.exit = mlx_xpm_file_to_image(game->mlx, \
-	"assets/mirror.xpm",game->img_width, game->img_height);
+	"assets/mirror.xpm",&game->img_width, &game->img_height);
 	game->textures.wall = mlx_xpm_file_to_image(game->mlx, \
-	"assets/volcanoe_tiles_border.xpm",game->img_width, game->img_height);
+	"assets/volcanoe_tiles_border.xpm", &game->img_width, &game->img_height);
 	game->textures.background = mlx_xpm_file_to_image(game->mlx, \
-	"assets/volcanoe_tiles_bg.xpm",game->img_width, game->img_height);
+	"assets/volcanoe_tiles_bg.xpm", &game->img_width, &game->img_height);
 	if (game->textures.player == NULL || game->textures.background == NULL
 		|| game->textures.collectible == NULL || game->textures.exit == NULL
 		|| game->textures.wall == NULL)
-		write(1, "error: open images\n", 19);
+		write(1, "Error\nfail to open images\n", 26);
 }
 
 void	load_row(t_game_info *game, int i)
