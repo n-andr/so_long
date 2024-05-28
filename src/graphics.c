@@ -42,21 +42,15 @@ void	load_row(t_game_info *game, int i)
 		else if (game->map[i][k] == 'C')
 		{
 			mlx_put_image_to_window(game->mlx, game->window, \
-			game->textures.background, k * 32, i * 32);
-			mlx_put_image_to_window(game->mlx, game->window, \
 			game->textures.collectible, k * 32, i * 32);
 		}
 		else if (game->map[i][k] == 'P')
 		{
 			mlx_put_image_to_window(game->mlx, game->window, \
-			game->textures.background, k * 32, i * 32);
-			mlx_put_image_to_window(game->mlx, game->window, \
 			game->textures.player, k * 32, i * 32);
 		}
 		else if (game->map[i][k] == 'E')
 		{
-			mlx_put_image_to_window(game->mlx, game->window, \
-			game->textures.background, k * 32, i * 32);
 			mlx_put_image_to_window(game->mlx, game->window, \
 			game->textures.exit, k * 32, i * 32);
 		}

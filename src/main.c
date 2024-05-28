@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/28 14:34:31 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/28 15:42:35 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	count_moves(t_game_info *game)
 	char	*moves;
 
 	game->moves_count ++;
+	printf("count_moves : moves %i", game->moves_count); // remove
 	moves = ft_itoa(game->moves_count);
 	write(1, &moves, ft_strlen(moves));
 	write(1, "\n", 1);
+	printf("count_moves : moves %s", moves); // remove
 	free(moves);
 }
 // need to be int cus mlx_hook and nlx_key_hook require int
@@ -28,10 +30,12 @@ int	key_pressed(int key, t_game_info *game) // more like key unpressed???
 	if (key == 119 || key == 115 \
 	|| key == 100 || key == 97)
 	{
+		printf("key_pressed : %i", key); // remove
 		move_p(game, key);
 	}
 	else if (key == 65307)
 	{
+		printf("key_pressed : %i", key); // remove
 		close_game(game);
 	}
 	return (0);

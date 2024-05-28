@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:57:07 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/27 15:52:33 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/28 15:39:37 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ void	find_p(t_game_info *game, char **map)
 	game->p_position_row = row;
 	game->p_position_col = col;
 	// flood_fill(map, row, col, game);
-	// int i = 0;
-	// while (i < game->rows)
-	// {
-	// 	printf("%s\n", map[i]);
-	// 	i++;
-	// }
+	int i = 0; //remove all
+	while (i < game->rows) // remove
+	{
+		printf("map : %s\n", map[i]); // remove
+		i++; // remove
+	}
 	// printf("col: %i\n", game->collectibles);
 	// printf("col-check: %i\n", game->c_check);
 	// return 0;
