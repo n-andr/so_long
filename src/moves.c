@@ -103,6 +103,7 @@ void	move_right(t_game_info *game, int row, int col)
 	{
 		game->map[row][col] = '0';
 		game->map[row][col + 1] = 'P';
+		game->c_count ++;
 		count_moves(game);
 	}
 	else if (game->map[row][col + 1] == 'E' && game->c_count == game->collectibles)
