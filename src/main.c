@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/28 16:02:36 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/28 17:26:15 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	count_moves(t_game_info *game)
 	game->moves_count ++;
 	printf("count_moves : moves %i\n", game->moves_count); // remove
 	moves = ft_itoa(game->moves_count);
-	write(1, &moves, ft_strlen(moves));
+	write(1, moves, ft_strlen(moves));
 	write(1, "\n", 1);
 	printf("count_moves : moves %s\n", moves); // remove
 	free(moves);
@@ -38,6 +38,8 @@ int	key_pressed(int key, t_game_info *game) // more like key unpressed???
 		printf("key_pressed : %i\n", key); // remove
 		close_game(game);
 	}
+	printf("key_pressed : collectibles %i\n", game->collectibles); // remove
+	printf("key_pressed : c_count %i\n", game->c_count); // remove
 	return (0);
 }
 void	is_ber(char *map_adress)
