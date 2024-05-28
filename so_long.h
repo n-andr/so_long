@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:21:53 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/27 15:29:48 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/28 12:01:49 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ int		close_game(t_game_info *game);
 //libft
 //int	ft_strlen(char *str);
 void	*ft_calloc(size_t n_items, size_t size);
+char	*ft_itoa(int n);
 
 #endif
