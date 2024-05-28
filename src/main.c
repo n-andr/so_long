@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/28 15:54:05 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/28 16:02:36 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	key_pressed(int key, t_game_info *game) // more like key unpressed???
 	if (key == 119 || key == 115 \
 	|| key == 100 || key == 97)
 	{
-		printf("key_pressed : %i", key); // remove
+		printf("key_pressed : %i\n", key); // remove
 		move_p(game, key);
 	}
 	else if (key == 65307)
 	{
-		printf("key_pressed : %i", key); // remove
+		printf("key_pressed : %i\n", key); // remove
 		close_game(game);
 	}
 	return (0);
