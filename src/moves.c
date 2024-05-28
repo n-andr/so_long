@@ -10,32 +10,6 @@ based on ASCII lowercase
 */
 void	move_up(t_game_info *game, int row, int col)
 {
-	if (game->map[row + 1][col] == '0')
-	{
-		game->map[row][col] = '0';
-		game->map[row + 1][col] = 'P';
-	}
-	else if (game->map[row + 1][col] == '1')
-		return;
-	else if (game->map[row + 1][col] == 'C')
-	{
-		game->map[row][col] = '0';
-		game->map[row + 1][col] = 'P';
-		game->c_count ++;
-	}
-	else if (game->map[row + 1][col] == 'E' && game->c_count == game->collectibles)
-	{
-		game->moves_count++;
-		//success!
-		close_game(game);
-	}
-	else if (game->map[row + 1][col] == 'E' && game->c_count != game->collectibles)
-		return;
-	game->moves_count++;
-}
-
-void	move_down(t_game_info *game, int row, int col)
-{
 	if (game->map[row - 1][col] == '0')
 	{
 		game->map[row][col] = '0';
@@ -51,13 +25,40 @@ void	move_down(t_game_info *game, int row, int col)
 	}
 	else if (game->map[row - 1][col] == 'E' && game->c_count == game->collectibles)
 	{
-		game->moves_count++;
+		count_moves(game);
 		//success!
 		close_game(game);
 	}
 	else if (game->map[row - 1][col] == 'E' && game->c_count != game->collectibles)
 		return;
-	game->moves_count++;
+	count_moves(game);
+	load_map_graphics(game);
+}
+
+void	move_down(t_game_info *game, int row, int col)
+{
+	if (game->map[row + 1][col] == '0')
+	{
+		game->map[row][col] = '0';
+		game->map[row + 1][col] = 'P';
+	}
+	else if (game->map[row + 1][col] == '1')
+		return;
+	else if (game->map[row + 1][col] == 'C')
+	{
+		game->map[row][col] = '0';
+		game->map[row + 1][col] = 'P';
+		game->c_count ++;
+	}
+	else if (game->map[row + 1][col] == 'E' && game->c_count == game->collectibles)
+	{
+		count_moves(game);
+		//success!
+		close_game(game);
+	}
+	else if (game->map[row + 1][col] == 'E' && game->c_count != game->collectibles)
+		return;
+	count_moves(game);
 }
 
 void	move_left(t_game_info *game, int row, int col)
@@ -77,13 +78,13 @@ void	move_left(t_game_info *game, int row, int col)
 	}
 	else if (game->map[row][col - 1] == 'E' && game->c_count == game->collectibles)
 	{
-		game->moves_count++;
+		count_moves(game);
 		//success!
 		close_game(game);
 	}
 	else if (game->map[row][col - 1] == 'E' && game->c_count != game->collectibles)
 		return;
-	game->moves_count++;
+	count_moves(game);
 }
 
 void	move_right(t_game_info *game, int row, int col)
