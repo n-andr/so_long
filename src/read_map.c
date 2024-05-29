@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/28 14:47:14 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/29 21:54:10 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,13 @@ int	p_check(t_game_info *game)
 	while (row < game->rows)
 	{
 		while (col < game->columns)
-			{
-				if (game->map[row][col] == 'P')
-					p_count ++;
-				col++;
-			}
-		if (col == game->columns) 
 		{
-			col = 0;
-			row++;
+			if (game->map[row][col] == 'P')
+				p_count ++;
+			col++;
 		}
+		col = 0;
+		row++;
 	}
 	return(p_count);
 }
@@ -118,16 +115,13 @@ int	e_check(t_game_info *game)
 	while (row < game->rows)
 	{
 		while (col < game->columns)
-			{
-				if (game->map[row][col] == 'E')
-					e_count ++;
-				col++;
-			}
-		if (col == game->columns) 
 		{
-			col = 0;
-			row++;
+			if (game->map[row][col] == 'E')
+				e_count ++;
+			col++;
 		}
+		col = 0;
+		row++;
 	}
 	game->exit_check = 0;
 	return(e_count);
@@ -209,8 +203,6 @@ void	characters_check(t_game_info *game)
 }
 void	check_map(t_game_info *game, char *map_adress)
 {
-		printf("check map\n"); // remove
-
 	is_rectangular(game);
 	if (is_closed(game) != 1)
 	{
@@ -233,16 +225,24 @@ void	fill_map(char *map_adress, t_game_info *game)
 	int	file;
 	int	i;
 
-	file = open(map_adress, O_RDWR);
+	file = open(map_adress, O_RDONLY);
 	i = 0;
 	game->map = malloc(sizeof(char *) * (game->rows + 1)); // maybe just rows ???
 	if (game->map == NULL)
-		return ;
-	while (i <= game->rows) // when i == rows NULL should be returned
+		exit(EXIT_FAILURE);
+	while (i < game->rows) // when i == rows NULL should be returned
 	{
 		game->map[i] = get_next_line(file);
+		if (game->map[i] == NULL)
+    	{
+			write(1, "Error\nReading map failed\n", 25);
+			free_map(game);
+			close(file);
+			exit(EXIT_FAILURE);
+    	}
 		i ++;
 	}
+	game->map[i] = NULL;
 	close(file);
 	check_map(game, map_adress); // need to check if size of the map fits in the screen (or can move the map)
 	game->moves_count = 0;
@@ -265,6 +265,7 @@ int read_map(char *map_adress, t_game_info *game)
 	if (line == NULL)
 	{
 		write(1, "Error\nMap is wrong\n", 19);
+		close(file);
 		exit(EXIT_FAILURE);
 	}
 	while (line)

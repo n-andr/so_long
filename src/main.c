@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/28 17:26:15 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/29 22:02:45 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 {
 	t_game_info game;
 
-	if (argc == 2) // need to check if map ends with .ber
+	if (argc == 2)
 	{
 		is_ber(argv[1]);
 		read_map(argv[1], &game);	
@@ -70,7 +70,6 @@ int	main(int argc, char **argv)
 		write(1, "Error\nProgramm accepts only 1 argument\n", 39);
 		exit(EXIT_FAILURE);
 	}
-	// printf("map is ok\n"); // remove
 	//need to handle cntr c to have no leaks???
 	game.mlx = mlx_init();
 	game.window = mlx_new_window(game.mlx, game.columns * 32, \
