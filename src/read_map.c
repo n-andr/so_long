@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/29 21:54:10 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/29 23:02:10 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,16 @@ void is_rectangular(t_game_info *game)
 	int	i;
 
 	i = 1;
+
+	//remove
+	// int k = 0;
+	// while (k < 10)
+	// {
+	// 	printf("is_rectangular: row : %i, len : %i, %s\n", k, ft_strlen(game->map[k]), game->map[k]);
+	// 	k++;
+	// }
+	//remove
+	
 	while (game->map[i])
 	{
 		if (ft_strlen(game->map[i]) == ft_strlen(game->map[i - 1]))
