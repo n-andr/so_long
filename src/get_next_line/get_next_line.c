@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:49:22 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/29 22:53:16 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/30 14:22:59 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 // changed from original gnl 
 // before it also copied \n, now it doesn't
-// before : ft_strlcpy (read_line, big_buf, (i + 2));
-// now : ft_strlcpy (read_line, big_buf, (i + 1));
+// before : 
+//read_line = malloc (sizeof(char) * (i + 2));
+//ft_strlcpy (read_line, big_buf, (i + 2));
+// now : 
+//read_line = malloc (sizeof(char) * (i + 1));
+//ft_strlcpy (read_line, big_buf, (i + 1));
 
 
 char	*split_buf(char *big_buf)
@@ -31,7 +35,7 @@ char	*split_buf(char *big_buf)
 		read_line = malloc (sizeof(char) * (i + 2));
 		if (read_line == NULL)
 			return (NULL);
-		ft_strlcpy (read_line, big_buf, (i + 1));
+		ft_strlcpy (read_line, big_buf, (i + 2));
 		ft_strlcpy(big_buf, (big_buf + i + 1), (ft_strlen(big_buf) - i));
 	}
 	else

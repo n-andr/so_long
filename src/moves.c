@@ -8,6 +8,7 @@ key == 97 - A
 
 based on ASCII lowercase
 */
+
 void	move_up(t_game_info *game, int row, int col)
 {
 	if (game->map[row - 1][col] == '0')

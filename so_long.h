@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:21:53 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/28 14:26:05 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/30 18:38:42 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_game_info
 }	t_game_info;
 
 int read_map(char *map, t_game_info *game);
-int has_valid_path(t_game_info *game, char *map_adress);
+int has_valid_path(t_game_info *game);
 void	find_p(t_game_info *game, char **map);
 int	key_pressed(int key, t_game_info *game);
 
@@ -75,7 +75,7 @@ int		close_game(t_game_info *game);
 
 //libft
 //int	ft_strlen(char *str);
-void	*ft_calloc(size_t n_items, size_t size);
+// void	*ft_calloc(size_t n_items, size_t size);
 char	*ft_itoa(int n);
 
 #endif

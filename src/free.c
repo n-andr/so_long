@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:18:09 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/28 15:55:43 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/30 18:48:03 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	free_img(t_game_info *game)
 
 int	close_game(t_game_info *game) // need to be int cus mlx_hook and nlx_key_hook require int
 {
-	free_img(game); // here???
-	mlx_destroy_window(game->window, game->window);
-	mlx_destroy_display(game->mlx);
 	free_map(game); 
+	free_img(game); // here???
+	mlx_destroy_window(game->mlx, game->window);
+	mlx_destroy_display(game->mlx);
 	free(game->mlx); //do i need ???
 	exit(0);
 	return(0);

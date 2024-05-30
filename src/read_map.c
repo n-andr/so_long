@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/29 23:02:10 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/30 19:24:58 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ Empty map case
 Invalid extension (only .ber allowed)
 Map does not exist
 No arguments or to many arguments
+New lines
 Check every error case with valgrind
 */
 
@@ -211,7 +212,7 @@ void	characters_check(t_game_info *game)
 		row++;
 	}
 }
-void	check_map(t_game_info *game, char *map_adress)
+void	check_map(t_game_info *game)
 {
 	is_rectangular(game);
 	if (is_closed(game) != 1)
@@ -223,38 +224,76 @@ void	check_map(t_game_info *game, char *map_adress)
 	elements_check(game);
 	characters_check(game);
 	// The map must contain 1 exit, at least 1 collectible, and 1 starting position to be valid.
-	if (has_valid_path(game, map_adress) != 1)
+	if (has_valid_path(game) != 1)
 	{
 		write(1, "Error\nNo valid path\n", 21);
 		free_map(game);
 		exit(EXIT_FAILURE);
 	}
 }
+
+char	*handle_new_line(t_game_info *game, char *line, int row)
+{	int	i;
+
+	i = 0;
+	if (line == NULL)
+		return (NULL);
+	if (line[0] == '\n')
+    {
+		game->map[row] = malloc(sizeof(char) * 2); // '\n' and '\0'
+		if (game->map[row] == NULL)
+			return (NULL);
+		game->map[row][0] = '\n';
+		game->map[row][1] = '\0';
+		return (line);
+    }
+	while (line[i] && line[i] != '\n')
+	{
+		i++;
+	}
+	game->map[row] = malloc(sizeof(char) * (i + 1));
+	if (game->map[row] == NULL)
+		return (NULL);
+	ft_strlcpy (game->map[row], line, (i + 1));
+	return (line);
+}
 void	fill_map(char *map_adress, t_game_info *game)
 {
 	int	file;
 	int	i;
+	char	*line;
 
 	file = open(map_adress, O_RDONLY);
 	i = 0;
 	game->map = malloc(sizeof(char *) * (game->rows + 1)); // maybe just rows ???
 	if (game->map == NULL)
 		exit(EXIT_FAILURE);
-	while (i < game->rows) // when i == rows NULL should be returned
+	line = get_next_line(file);
+	handle_new_line(game, line, i);
+	while (line)
 	{
-		game->map[i] = get_next_line(file);
-		if (game->map[i] == NULL)
-    	{
-			write(1, "Error\nReading map failed\n", 25);
-			free_map(game);
-			close(file);
-			exit(EXIT_FAILURE);
-    	}
+		free(line);
 		i ++;
+		line = get_next_line (file);
+		handle_new_line(game, line, i);
 	}
-	game->map[i] = NULL;
+	free(line); //check for null? double free?
+
+	// while (i < game->rows) // when i == rows NULL should be returned
+	// {
+	// 	game->map[i] = get_next_line(file);
+	// 	if (game->map[i] == NULL)
+    // 	{
+	// 		write(1, "Error\nReading map failed\n", 25);
+	// 		free_map(game);
+	// 		close(file);
+	// 		exit(EXIT_FAILURE);
+    // 	}
+	// 	i ++;
+	// }
+	game->map[game->rows] = NULL;
 	close(file);
-	check_map(game, map_adress); // need to check if size of the map fits in the screen (or can move the map)
+	check_map(game); // need to check if size of the map fits in the screen (or can move the map)
 	game->moves_count = 0;
 	return ;
 }
