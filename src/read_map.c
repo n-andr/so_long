@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:28 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/30 19:24:58 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/06/01 01:00:21 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,12 @@ void is_rectangular(t_game_info *game)
 
 	i = 1;
 
-	//remove
-	// int k = 0;
-	// while (k < 10)
-	// {
-	// 	printf("is_rectangular: row : %i, len : %i, %s\n", k, ft_strlen(game->map[k]), game->map[k]);
-	// 	k++;
-	// }
-	//remove
-	
+	if (game->map[0] == NULL)
+	{
+		write(1, "Error\nEmpty map or memory allocation failed\n", 44);
+		free_map(game);
+		exit(EXIT_FAILURE);
+	}
 	while (game->map[i])
 	{
 		if (ft_strlen(game->map[i]) == ft_strlen(game->map[i - 1]))
@@ -111,7 +108,7 @@ int	p_check(t_game_info *game)
 		col = 0;
 		row++;
 	}
-	return(p_count);
+	return (p_count);
 }
 
 int	e_check(t_game_info *game)
@@ -212,9 +209,16 @@ void	characters_check(t_game_info *game)
 		row++;
 	}
 }
+
 void	check_map(t_game_info *game)
 {
 	is_rectangular(game);
+	if (game->rows > 25 || game->columns > 45)
+	{
+		write(1, "Error\nMap is too big\n", 21);
+		free_map(game);
+		exit(EXIT_FAILURE);
+	}
 	if (is_closed(game) != 1)
 	{
 		write(1, "Error\nMap is not closed\n", 24);
@@ -238,13 +242,12 @@ char	*handle_new_line(t_game_info *game, char *line, int row)
 	i = 0;
 	if (line == NULL)
 		return (NULL);
-	if (line[0] == '\n')
+	if (line[0] == '\n' || row == game->rows - 1)
     {
-		game->map[row] = malloc(sizeof(char) * 2); // '\n' and '\0'
+		game->map[row] = malloc(sizeof(char) * ft_strlen(line) + 1);
 		if (game->map[row] == NULL)
 			return (NULL);
-		game->map[row][0] = '\n';
-		game->map[row][1] = '\0';
+		ft_strlcpy (game->map[row], line, (ft_strlen(line) + 1));
 		return (line);
     }
 	while (line[i] && line[i] != '\n')
@@ -267,7 +270,12 @@ void	fill_map(char *map_adress, t_game_info *game)
 	i = 0;
 	game->map = malloc(sizeof(char *) * (game->rows + 1)); // maybe just rows ???
 	if (game->map == NULL)
+	{
+		write(1, "Error\nReading map failed\n", 25);
+		free_map(game);
+		close(file);
 		exit(EXIT_FAILURE);
+	}
 	line = get_next_line(file);
 	handle_new_line(game, line, i);
 	while (line)
@@ -277,20 +285,7 @@ void	fill_map(char *map_adress, t_game_info *game)
 		line = get_next_line (file);
 		handle_new_line(game, line, i);
 	}
-	free(line); //check for null? double free?
-
-	// while (i < game->rows) // when i == rows NULL should be returned
-	// {
-	// 	game->map[i] = get_next_line(file);
-	// 	if (game->map[i] == NULL)
-    // 	{
-	// 		write(1, "Error\nReading map failed\n", 25);
-	// 		free_map(game);
-	// 		close(file);
-	// 		exit(EXIT_FAILURE);
-    // 	}
-	// 	i ++;
-	// }
+	free(line); 
 	game->map[game->rows] = NULL;
 	close(file);
 	check_map(game); // need to check if size of the map fits in the screen (or can move the map)
@@ -307,16 +302,19 @@ int read_map(char *map_adress, t_game_info *game)
 	if (file == -1)
 	{
 		write(1, "Error\nMap does not exist\n", 25);
+		close(file);
 		exit(EXIT_FAILURE);
 	}
 	game->rows = 0;
 	line = get_next_line(file);
 	if (line == NULL)
 	{
-		write(1, "Error\nMap is wrong\n", 19);
+		write(1, "Error\nEmpty map or memory allocation failed\n", 44);
 		close(file);
 		exit(EXIT_FAILURE);
 	}
+	//???можно убрать всю проверку у маллоков и вот эту строчку с проверкой линии
+	// чтобы проверять на нуль поинтер только в is_rectungular и сохранить строчки
 	while (line)
 	{
 		free(line);

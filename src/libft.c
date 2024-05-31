@@ -6,7 +6,7 @@
 /*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:29:58 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/30 14:18:58 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/05/30 23:16:57 by Natalia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,6 @@ void	*ft_calloc(size_t n_items, size_t size)
 		return (NULL);
 	ft_bzero(mem, total_size);
 	return (mem);
+	//do i even need this?
+
 }

@@ -11,15 +11,15 @@ void	open_img(t_game_info *game)
 	game->img_width = IMG_WIDTH;
 	//game->current_frame = 0;
 	game->textures.player = mlx_xpm_file_to_image(game->mlx, \
-	"assets/dckFall-32x32_.xpm",&game->img_width, &game->img_height);
+	"assets/goose_idle_on_green.xpm",&game->img_width, &game->img_height);
 	game->textures.collectible = mlx_xpm_file_to_image(game->mlx, \
-	"assets/potion1.xpm",&game->img_width, &game->img_height);
+	"assets/potion_pink_on_green.xpm",&game->img_width, &game->img_height);
 	game->textures.exit = mlx_xpm_file_to_image(game->mlx, \
-	"assets/mirror.xpm",&game->img_width, &game->img_height);
+	"assets/couldron_on-green.xpm",&game->img_width, &game->img_height);
 	game->textures.wall = mlx_xpm_file_to_image(game->mlx, \
-	"assets/volcanoe_tiles_border.xpm", &game->img_width, &game->img_height);
+	"assets/rock_on_green.xpm", &game->img_width, &game->img_height);
 	game->textures.background = mlx_xpm_file_to_image(game->mlx, \
-	"assets/volcanoe_tiles_bg.xpm", &game->img_width, &game->img_height);
+	"assets/dark_green_bg.xpm", &game->img_width, &game->img_height);
 	if (game->textures.player == NULL || game->textures.background == NULL
 		|| game->textures.collectible == NULL || game->textures.exit == NULL
 		|| game->textures.wall == NULL)
