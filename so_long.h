@@ -6,7 +6,7 @@
 /*   By: nandreev <nandreev@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:21:53 by nandreev          #+#    #+#             */
-/*   Updated: 2024/06/05 16:20:48 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/06/05 22:43:44 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_textures
 	void	*player;
 	void	*collectible;
 	void	*wall;
+	void	*stone;
 	void	*exit;
 	void	*background;
 }	t_textures;

@@ -6,7 +6,7 @@
 /*   By: nandreev <nandreev@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:18:09 by nandreev          #+#    #+#             */
-/*   Updated: 2024/06/05 16:18:19 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/06/05 22:44:02 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	free_img(t_game_info *game)
 	mlx_destroy_image(game->mlx, game->textures.exit);
 	mlx_destroy_image(game->mlx, game->textures.player);
 	mlx_destroy_image(game->mlx, game->textures.wall);
+	mlx_destroy_image(game->mlx, game->textures.stone);
 }
 
 int	close_game(t_game_info *game)

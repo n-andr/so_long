@@ -6,7 +6,7 @@
 /*   By: nandreev <nandreev@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/06/04 13:58:18 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/06/06 00:28:59 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	count_moves(t_game_info *game)
 }
 
 // need to be int cus mlx_hook and nlx_key_hook require int
-// more like key unpressed???
+// more like key unpressed
 int	key_pressed(int key, t_game_info *game)
 {
 	if (key == 119 || key == 115 \
