@@ -3,23 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nandreev <nandreev@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:18:09 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/30 18:48:03 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/06/04 14:54:35 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	handle_error(t_game_info *game, int file, const char *message)
+{
+	write(1, message, ft_strlen(message));
+	if (file != -1)
+	{
+		close(file);
+	}
+	free_map(game);
+	exit(EXIT_FAILURE);
+}
 
 void	free_map(t_game_info *game)
 {
 	int	i;
 
 	i = 0;
-	while (game->map[i]) //need to free one more that is already null?
+	while (game->map[i])
 	{
-		//printf("line %d : %s", i, game->map[i]);
 		free (game->map[i]);
 		i ++;
 	}
@@ -31,9 +41,8 @@ void	free_check_map(char **map)
 	int	i;
 
 	i = 0;
-	while (map[i]) //need to free one more that is already null?
+	while (map[i])
 	{
-		//printf("line %d : %s", i, game->map[i]);
 		free (map[i]);
 		i ++;
 	}
@@ -49,13 +58,13 @@ void	free_img(t_game_info *game)
 	mlx_destroy_image(game->mlx, game->textures.wall);
 }
 
-int	close_game(t_game_info *game) // need to be int cus mlx_hook and nlx_key_hook require int
+int	close_game(t_game_info *game)
 {
-	free_map(game); 
-	free_img(game); // here???
+	free_map(game);
+	free_img(game);
 	mlx_destroy_window(game->mlx, game->window);
 	mlx_destroy_display(game->mlx);
-	free(game->mlx); //do i need ???
+	free(game->mlx);
 	exit(0);
-	return(0);
+	return (0);
 }

@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nandreev <nandreev@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:49:22 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/30 14:22:59 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/06/04 13:55:30 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-// changed from original gnl 
-// before it also copied \n, now it doesn't
-// before : 
-//read_line = malloc (sizeof(char) * (i + 2));
-//ft_strlcpy (read_line, big_buf, (i + 2));
-// now : 
-//read_line = malloc (sizeof(char) * (i + 1));
-//ft_strlcpy (read_line, big_buf, (i + 1));
-
 
 char	*split_buf(char *big_buf)
 {

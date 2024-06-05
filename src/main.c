@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Natalia <Natalia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nandreev <nandreev@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:12 by nandreev          #+#    #+#             */
-/*   Updated: 2024/05/30 19:29:08 by Natalia          ###   ########.fr       */
+/*   Updated: 2024/06/04 13:58:18 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	count_moves(t_game_info *game)
 	write(1, "\n", 1);
 	free(moves);
 }
+
 // need to be int cus mlx_hook and nlx_key_hook require int
-int	key_pressed(int key, t_game_info *game) // more like key unpressed???
+// more like key unpressed???
+int	key_pressed(int key, t_game_info *game)
 {
 	if (key == 119 || key == 115 \
 	|| key == 100 || key == 97)
@@ -53,19 +55,18 @@ void	is_ber(char *map_adress)
 
 int	main(int argc, char **argv)
 {
-	t_game_info game;
+	t_game_info	game;
 
 	if (argc == 2)
 	{
 		is_ber(argv[1]);
-		read_map(argv[1], &game);	
+		read_map(argv[1], &game);
 	}
 	else
 	{
 		write(1, "Error\nProgramm accepts only 1 argument\n", 39);
 		exit(EXIT_FAILURE);
 	}
-	//need to handle cntr c to have no leaks???
 	game.mlx = mlx_init();
 	game.window = mlx_new_window(game.mlx, game.columns * 32, \
 	game.rows * 32, "so long");
@@ -79,3 +80,4 @@ int	main(int argc, char **argv)
 
 // mlx_hook - for different events (mouse movements, close the window etc)
 // mlx_key_hook - only for keyboard events
+//need to handle cntr c to have no leaks???
