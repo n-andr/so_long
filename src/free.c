@@ -6,13 +6,13 @@
 /*   By: nandreev <nandreev@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 20:18:09 by nandreev          #+#    #+#             */
-/*   Updated: 2024/06/04 14:54:35 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:18:19 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	handle_error(t_game_info *game, int file, const char *message)
+void	handle_error(t_game_info *game, int file, char *message)
 {
 	write(1, message, ft_strlen(message));
 	if (file != -1)

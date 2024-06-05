@@ -1,21 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphics.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nandreev <nandreev@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/25 16:57:07 by nandreev          #+#    #+#             */
+/*   Updated: 2024/06/05 16:15:54 by nandreev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
-
-// void	display_textures(t_game_info *game)
-// {
-
-// }
 
 void	open_img(t_game_info *game)
 {
 	game->img_height = IMG_HEIGHT;
 	game->img_width = IMG_WIDTH;
-	//game->current_frame = 0;
 	game->textures.player = mlx_xpm_file_to_image(game->mlx, \
-	"assets/goose_idle_on_green.xpm",&game->img_width, &game->img_height);
+	"assets/goose_idle_on_green.xpm", &game->img_width, &game->img_height);
 	game->textures.collectible = mlx_xpm_file_to_image(game->mlx, \
-	"assets/potion_pink_on_green.xpm",&game->img_width, &game->img_height);
+	"assets/potion_pink_on_green.xpm", &game->img_width, &game->img_height);
 	game->textures.exit = mlx_xpm_file_to_image(game->mlx, \
-	"assets/couldron_on-green.xpm",&game->img_width, &game->img_height);
+	"assets/couldron_on-green.xpm", &game->img_width, &game->img_height);
 	game->textures.wall = mlx_xpm_file_to_image(game->mlx, \
 	"assets/rock_on_green.xpm", &game->img_width, &game->img_height);
 	game->textures.background = mlx_xpm_file_to_image(game->mlx, \
@@ -26,6 +32,16 @@ void	open_img(t_game_info *game)
 		write(1, "Error\nfail to open images\n", 26);
 }
 
+void	load_borders(t_game_info *game, int i, int k)
+{
+	if (i == 0 || i == game->rows - 1)
+		mlx_put_image_to_window(game->mlx, game->window, \
+		game->textures.wall, k * 32, i * 32);
+	else
+		mlx_put_image_to_window(game->mlx, game->window, \
+		game->textures.wall, k * 32, i * 32);
+}
+
 void	load_row(t_game_info *game, int i)
 {
 	int	k;
@@ -34,8 +50,7 @@ void	load_row(t_game_info *game, int i)
 	while (game->map[i][k])
 	{
 		if (game->map[i][k] == '1')
-			mlx_put_image_to_window(game->mlx, game->window, \
-			game->textures.wall, k * 32, i * 32);
+			load_borders(game, i, k);
 		else if (game->map[i][k] == '0')
 			mlx_put_image_to_window(game->mlx, game->window, \
 			game->textures.background, k * 32, i * 32);
@@ -56,8 +71,8 @@ void	load_row(t_game_info *game, int i)
 		}
 		k++;
 	}
-	//maybe use mlx_pixel_put to fill all the bg???
 }
+
 void	load_map_graphics(t_game_info *game)
 {
 	int	i;
@@ -65,9 +80,9 @@ void	load_map_graphics(t_game_info *game)
 	i = 0;
 	while (game->map[i] != NULL)
 	{
-		//maybe load bg here for everything in every row
 		load_row(game, i);
 		i++;
 	}
-	//do i need to display a counter for collectibles?
 }
+
+//maybe load bg here for everything in every row or pixel put

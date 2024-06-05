@@ -6,7 +6,7 @@
 /*   By: nandreev <nandreev@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:21:53 by nandreev          #+#    #+#             */
-/*   Updated: 2024/06/02 13:28:58 by nandreev         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:20:48 by nandreev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_game_info
 }	t_game_info;
 
 int read_map(char *map, t_game_info *game);
+void	check_map(t_game_info *game);
 int has_valid_path(t_game_info *game);
 void	find_p(t_game_info *game, char **map);
 int	key_pressed(int key, t_game_info *game);
@@ -76,7 +77,7 @@ void	count_moves(t_game_info *game);
 
 
 //free
-void handle_error(t_game_info *game, int file, const char *message);
+void handle_error(t_game_info *game, int file, char *message);
 void	free_map(t_game_info *game);
 void	free_check_map(char **map);
 int		close_game(t_game_info *game);
