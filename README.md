@@ -33,7 +33,11 @@ To play the game, run the compiled executable with a map file as an argument.
 During this project, I gained experience with:
 
 **MiniLibX Library**: Understanding and using the MiniLibX library for basic graphics rendering.
+
 **Event Handling**: Implementing user input handling to move the player character.
+
 **File I/O**: Reading and parsing map files using the get_next_line function.
+
 **Game Logic**: Designing and implementing game mechanics, including item collection and win/lose conditions.
+
 **Memory Management**: Ensuring efficient memory usage and handling dynamic memory allocation.
