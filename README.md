@@ -20,6 +20,13 @@ cd so_long
 make
 ```
 
+If neeeded include "mlx.h"
+
+```bash
+sudo cp libmlx.a /usr/local/lib/
+sudo cp mlx.h /usr/local/include/
+```bash
+
 ## Usage
 
 To play the game, run the compiled executable with a map file as an argument.
