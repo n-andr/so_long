@@ -25,7 +25,7 @@ If neeeded include "mlx.h"
 ```bash
 sudo cp libmlx.a /usr/local/lib/
 sudo cp mlx.h /usr/local/include/
-```bash
+```
 
 ## Usage
 
